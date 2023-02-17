@@ -60,7 +60,7 @@ const Products = () => {
                                             <p class="card-text lead fw-bold">
                                                 Ksh.{product.price}
                                             </p>
-                                            <NavLink to={'/products/${product.id}'} class="btn btn-outline-dark">Buy Now</NavLink>
+                                            <NavLink to={`/products/${product.id}`} class="btn btn-outline-dark">Buy Now</NavLink>
                                         </div>
                                 </div>
                             </div>
