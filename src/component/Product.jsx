@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import { NavLink } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
 
 const Product = () => {
 
-    const {id} = useParams();
+    const { id } = useParams();
     const [product, setProduct] = useState([]);
     const [loading, setLoading] = useState(false);
 
@@ -20,19 +20,19 @@ const Product = () => {
     }, []);
 
     const Loading = () => {
-        return(
+        return (
             <>
                 <div className="col-md-6">
-                    <Skeleton height={400}/>
+                    <Skeleton height={400} />
                 </div>
-                <div className="col-md-6" style={{lineHeight:2}}>
+                <div className="col-md-6" style={{ lineHeight: 2 }}>
                     <Skeleton height={50} width={300} />
                     <Skeleton height={75} />
                     <Skeleton height={25} width={150} />
                     <Skeleton height={50} />
                     <Skeleton height={150} />
                     <Skeleton height={50} width={100} />
-                    <Skeleton height={50} width={100} style={{marginLeft:6}
+                    <Skeleton height={50} width={100} style={{ marginLeft: 6 }
                     } />
 
                 </div>
@@ -40,44 +40,68 @@ const Product = () => {
         )
     }
     const ShowProduct = () => {
-        return(
+        const [phone,setPhone] = useState("")
+        
+        async function subscribe()
+        {
+            let item=(phone)
+            console.warn(item)
+
+            let result = await fetch("https://localhost:3000/skiza/subscribe",{
+                method:'POST',
+                headers:{
+                    "Content-Type": 'application/json',
+                    "Accept": 'application/json'
+                },
+                body:JSON.stringify(item)
+            });
+            result = await result.json()
+            console.warn("result", result)
+        }
+        return (
             <>
-                    <div className="col-md-6">
-                        <img src={product.image} alt={product.title}
+                <div className="col-md-6">
+                    <img src={product.image} alt={product.title}
                         height="400px" width="400px" />
-                    </div>
-                    <div className="col-md-6">
-                        <h4 className="text-uppercase text-black-50">
-                            {product.category}
-                        </h4>
-                        <h1 className="display-5">{product.title}</h1>
-                        <p className="lead fw-bolder">
-                            Rating {product.rating && product.rating.rate}
-                            <i className="fa fa-star"></i>
-                        </p>
-                        <h3 className="display-6 fw-bold my-4">
-                            Ksh. {product.price}
-                        </h3>
-                        <p className="lead">{product.description}</p>
-                        <button className="btn btn-outline-dark px-4 py-2">
-                            Add to Cart
-                        </button>
-                        <NavLink to="/cart" className="btn btn-dark ms-2 px-3 py-2">
-                            Go to Cart
-                        </NavLink>
-                    </div>
+                </div>
+                <div className="col-md-6">
+                    <h4 className="text-uppercase text-black-50">
+                        {product.category}
+                    </h4>
+                    <h1 className="display-5">{product.title}</h1>
+                    <p className="lead fw-bolder">
+                        Rating {product.rating && product.rating.rate}
+                        <i className="fa fa-star"></i>
+                    </p>
+                    <h3 className="display-6 fw-bold my-4">
+                        Ksh. {product.price}
+                    </h3>
+                    <p className="lead">{product.description}</p>
+                    <form>
+                       
+                        <div class="mb-3">
+                            <input type="number" value={phone} onChange={(e)=>setPhone(e.target.value)} className="form-control" placeholder="Enter Your Phone Number"/>
+                        </div>
+                    </form>
+                    <button onClick={subscribe} className="btn btn-outline-dark px-4 py-2">
+                        GET NOW!
+                    </button>
+                    <NavLink to="/cart" className="btn btn-dark ms-2 px-3 py-2">
+                        Go to Cart
+                    </NavLink>
+                </div>
             </>
         )
     }
-  return (
-    <div>
-        <div className="container py-5">
-            <div className="row py-4">
-                {loading ? <Loading/> : <ShowProduct/>}
+    return (
+        <div>
+            <div className="container py-5">
+                <div className="row py-4">
+                    {loading ? <Loading /> : <ShowProduct />}
+                </div>
             </div>
         </div>
-    </div>
-  )
+    )
 }
 
 export default Product
