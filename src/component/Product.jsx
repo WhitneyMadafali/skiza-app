@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
-import { NavLink } from 'react-router-dom';
+//import { NavLink } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
+import { Link } from 'react-router-dom';
+import { FacebookShareButton, WhatsappShareButton, TelegramShareButton, TwitterShareButton} from 'react-share';
+import { FacebookIcon, WhatsappIcon, TelegramIcon, TwitterIcon } from 'react-share';
 
 const Product = () => {
 
@@ -83,12 +86,32 @@ const Product = () => {
                             <input type="number" value={phone} onChange={(e)=>setPhone(e.target.value)} className="form-control" placeholder="Enter Your Phone Number"/>
                         </div>
                     </form>
-                    <button onClick={subscribe} className="btn btn-outline-dark px-4 py-2">
-                        GET NOW!
-                    </button>
-                    <NavLink to="/cart" className="btn btn-dark ms-2 px-3 py-2">
-                        Go to Cart
-                    </NavLink>
+                    <Link className='btn btn-dark ms-2 px-3 py-2' to="/Subscription">GET NOW!</Link>
+                    <h3 className="display-6 fw-bold my-4">Or Share With Your Friends</h3>
+                    <FacebookShareButton
+                                    url="https://skiza.africomltd.com/"
+                                    quote={"Enhance Your Calls with Skiza - The Music Caller Tune Subscription Service"}
+                                >
+                                    <FacebookIcon logoFillColor="white" round={true}></FacebookIcon>
+                                </FacebookShareButton>
+                                <WhatsappShareButton
+                                    title={"Enhance Your Calls with Skiza - The Music Caller Tune Subscription Service"}
+                                    url="https://skiza.africomltd.com/"
+                                >
+                                    <WhatsappIcon logoFillColor="white" round={true}></WhatsappIcon>
+                                </WhatsappShareButton>
+                                <TelegramShareButton
+                                    title={"Enhance Your Calls with Skiza - The Music Caller Tune Subscription Service"}
+                                    url="https://skiza.africomltd.com/"
+                                >
+                                    <TelegramIcon logoFillColor="white" round={true}></TelegramIcon>
+                                </TelegramShareButton>
+                                <TwitterShareButton
+                                    title={"Enhance Your Calls with Skiza - The Music Caller Tune Subscription Service"}
+                                    url="https://skiza.africomltd.com/"
+                                >
+                                    <TwitterIcon logoFillColor="white" round={true}></TwitterIcon>
+                                </TwitterShareButton>
                 </div>
             </>
         )

@@ -21,10 +21,6 @@ const Navbar = () => {
                             </li>
                            
                         </ul>
-                        <div className="buttons">
-                            <NavLink to="/cart" className="btn btn-outline-dark-2">
-                                <i className="fa fa-shopping-cart me-1"></i> Subscriptions</NavLink> 
-                        </div>
                         
                     </div>
                 </div>

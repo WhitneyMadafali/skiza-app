@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
 
+
 const Products = () => {
     const [data, setData] = useState([]);
     const [filter, setFilter] = useState([]);
@@ -60,7 +61,7 @@ const Products = () => {
                                             <p class="card-text lead fw-bold">
                                                 Ksh.{product.price}
                                             </p>
-                                            <NavLink to={`/products/${product.id}`} class="btn btn-outline-dark">Buy Now</NavLink>
+                                            <NavLink to={`/products/${product.id}`} className="btn btn-outline-dark">Buy Now</NavLink>
                                         </div>
                                 </div>
                             </div>
