@@ -15,7 +15,7 @@ const Product = () => {
     useEffect(() => {
         const getProduct = async () => {
             setLoading(true);
-            const response = await fetch(`https://fakestoreapi.com/products/${id}`);
+            const response = await fetch(`https://0774-41-57-111-71.eu.ngrok.io/products/${id}`);
             setProduct(await response.json());
             setLoading(false);
         }
@@ -72,10 +72,6 @@ const Product = () => {
                         {product.category}
                     </h4>
                     <h1 className="display-5">{product.title}</h1>
-                    <p className="lead fw-bolder">
-                        Rating {product.rating && product.rating.rate}
-                        <i className="fa fa-star"></i>
-                    </p>
                     <h3 className="display-6 fw-bold my-4">
                         Ksh. {product.price}
                     </h3>
