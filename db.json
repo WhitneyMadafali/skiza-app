@@ -1,0 +1,9 @@
+{
+  "products" : {
+    {"id":1,"title":"Corona M","price":1.5,"description":"Entertain your callers or even yourself with your favourite until the call is picked up or disconnected.","category":"funfact","image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwhVGtmHMyFWgHHIT4wpwmrc_k7fUeyX2ntw&usqp=CAU"},
+    {"id":2,"title":"Harris Joe","price":1.5,"description":"Entertain your callers or even yourself with your favourite until the call is picked up or disconnected.","category":"sportfact","image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwhVGtmHMyFWgHHIT4wpwmrc_k7fUeyX2ntw&usqp=CAU"},
+    {"id":3,"title":"Corona Kalenjin Version","price":1.5,"description":"Entertain your callers or even yourself with your favourite until the call is picked up or disconnected.","category":"methali","image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwhVGtmHMyFWgHHIT4wpwmrc_k7fUeyX2ntw&usqp=CAU"},
+    {"id":4,"title":"Corona Swahili Version","price":1.5,"description":"Entertain your callers or even yourself with your favourite until the call is picked up or disconnected.","category":"jokes","image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwhVGtmHMyFWgHHIT4wpwmrc_k7fUeyX2ntw&usqp=CAU"}
+  }
+  
+}
