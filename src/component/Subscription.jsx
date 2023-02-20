@@ -5,7 +5,7 @@ const Subscription = () => {
 
   return (
     <div class="card">
-    <img src="/assets/bg5.jpg" class="rounded mx-auto d-block" alt="background"></img>
+    <img src="/assets/musicbackground4.jpg" class="rounded mx-auto d-block" alt="background"></img>
     <div class="d-flex justify-content-center">
         <div class="spinner-border" role="status">
           <span class="visually-hidden">Loading...</span>
