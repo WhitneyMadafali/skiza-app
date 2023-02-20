@@ -15,7 +15,7 @@ const Product = () => {
     useEffect(() => {
         const getProduct = async () => {
             setLoading(true);
-            const response = await fetch(`https://0774-41-57-111-71.eu.ngrok.io/products/${id}`);
+           const response = await fetch(`https://fakestoreapi.com/products/${id}`);
             setProduct(await response.json());
             setLoading(false);
         }
