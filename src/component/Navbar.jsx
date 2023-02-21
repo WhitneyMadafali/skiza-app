@@ -5,7 +5,7 @@ const Navbar = () => {
     return (
         <div>
 
-            <nav className="navbar navbar-expand-lg navbar-light bg-light py-4 shadow- grey-navbar">
+            <nav className="navbar navbar-expand-lg navbar-light bg-light py-4 shadow- ">
                 <div className="container">
                     
                         <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
