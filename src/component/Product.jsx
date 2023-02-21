@@ -15,7 +15,7 @@ const Product = () => {
     useEffect(() => {
         const getProduct = async () => {
             setLoading(true);
-           const response = await fetch(`https://fakestoreapi.com/products/${id}`);
+            const response = await fetch(`https://fakestoreapi.com/products/${id}`);
             setProduct(await response.json());
             setLoading(false);
         }
@@ -43,9 +43,11 @@ const Product = () => {
         )
     }
     const ShowProduct = () => {
-        const [phone,setPhone] = useState("")
-        
-        async function subscribe()
+        const [phone,setPhone] = useState('');
+        const handlePhoneChange = (e) => {
+            setPhone(e.target.value);
+          };
+        /*async function subscribe()
         {
             let item=(phone)
             console.warn(item)
@@ -60,7 +62,7 @@ const Product = () => {
             });
             result = await result.json()
             console.warn("result", result)
-        }
+        }*/
         return (
             <>
                 <div className="col-md-6">
@@ -79,7 +81,12 @@ const Product = () => {
                     <form>
                        
                         <div class="mb-3">
-                            <input type="number" value={phone} onChange={(e)=>setPhone(e.target.value)} className="form-control" placeholder="Enter Your Phone Number"/>
+                            <input 
+                            type="number" 
+                            value={phone} 
+                            onChange={handlePhoneChange} 
+                            className="form-control" 
+                            placeholder="Enter Your Phone Number"/>
                         </div>
                     </form>
                     <Link className='btn btn-dark ms-2 px-3 py-2' to="/Subscription">GET NOW!</Link>
