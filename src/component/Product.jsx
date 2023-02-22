@@ -3,7 +3,8 @@ import { useParams } from 'react-router';
 //import { NavLink } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
 import { Link } from 'react-router-dom';
-import { FacebookShareButton, WhatsappShareButton, TelegramShareButton, TwitterShareButton} from 'react-share';
+
+import { FacebookShareButton, WhatsappShareButton, TelegramShareButton, TwitterShareButton } from 'react-share';
 import { FacebookIcon, WhatsappIcon, TelegramIcon, TwitterIcon } from 'react-share';
 
 const Product = () => {
@@ -15,7 +16,7 @@ const Product = () => {
     useEffect(() => {
         const getProduct = async () => {
             setLoading(true);
-            const response = await fetch(`https://fakestoreapi.com/products/${id}`);
+            const response = await fetch(`https://3060-41-57-111-71.eu.ngrok.io/api/products/${id}`);
             setProduct(await response.json());
             setLoading(false);
         }
@@ -43,78 +44,130 @@ const Product = () => {
         )
     }
     const ShowProduct = () => {
-        const [phone,setPhone] = useState('');
+        const [phone, setPhone] = useState('');
+        const [isValid, setIsValid] = useState(false);
+        const [isLoading, setIsLoading] = useState(false);
+
+        useEffect(() => {
+            if (phone.length === 10) {
+                setIsValid(true);
+            } else {
+                setIsValid(false);
+            }
+        }, [phone]);
+
+        const handleSubmit = (e) => {
+            e.preventDefault();
+            setIsLoading(true);
+
+
+            fetch('https://example.com/api/submit-phone-number', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ phone })
+            })
+                .then(response => {
+                    if (response.ok) {
+                        console.log('Phone number submitted successfully');
+                        setIsLoading(false);
+                        setPhone('');
+                        // Navigate to new page
+
+                    } else {
+                        throw new Error('Failed to submit phone number');
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                    setIsLoading(false);
+                    // Show error message to user
+                });
+        };
+
+
         const handlePhoneChange = (e) => {
             setPhone(e.target.value);
-          };
-        /*async function subscribe()
-        {
-            let item=(phone)
-            console.warn(item)
-
-            let result = await fetch("https://localhost:3000/skiza/subscribe",{
-                method:'POST',
-                headers:{
-                    "Content-Type": 'application/json',
-                    "Accept": 'application/json'
-                },
-                body:JSON.stringify(item)
-            });
-            result = await result.json()
-            console.warn("result", result)
-        }*/
+        };
         return (
             <>
                 <div className="col-md-6">
+                <div class="d-flex justify-content-start">
                     <img src={product.image} alt={product.title}
-                        height="400px" width="400px" />
+                        height="500px" width="500px" />
+                        </div>
                 </div>
                 <div className="col-md-6">
-                    <h4 className="text-uppercase text-black-50">
-                        {product.category}
-                    </h4>
-                    <h1 className="display-5">{product.title}</h1>
-                    <h3 className="display-6 fw-bold my-4">
-                        Ksh. {product.price}
-                    </h3>
-                    <p className="lead">{product.description}</p>
-                    <form>
-                       
-                        <div class="mb-3">
-                            <input 
-                            type="number" 
-                            value={phone} 
-                            onChange={handlePhoneChange} 
-                            className="form-control" 
-                            placeholder="Enter Your Phone Number"/>
+                    <div class="d-flex justify-content-start">
+                        <h4 className="text-uppercase text-black-30">
+                            {product.category}
+                        </h4>
+                    </div>
+                    <div class="d-flex justify-content-start">
+                        <h1 className="text-capitalize">{product.title}</h1>
+                    </div>
+                    <div class="d-flex justify-content-start">
+                        <p className="lead">{product.description}</p>
+                    </div>
+                    <div class="d-flex justify-content-center">
+
+                    </div>
+                    <form onSubmit={handleSubmit}>
+                        <div className="mb-3">
+                            <input
+                                type="number"
+                                value={phone}
+                                onChange={handlePhoneChange}
+                                className="form-control"
+                                placeholder="Enter Your Phone Number"
+                            />
                         </div>
+                        <div class="d-flex justify-content-center">
+                        <Link to="/Subscription">
+                            <button type="submit" className="btn btn-primary" disabled={!isValid || isLoading}>
+                                {isLoading ? 'Loading...' : 'GET THIS TUNE'}
+                            </button>
+                        </Link>
+                    </div>
                     </form>
-                    <Link className='btn btn-dark ms-2 px-3 py-2' to="/Subscription">GET NOW!</Link>
-                    <h3 className="display-6 fw-bold my-4">Or Share With Your Friends</h3>
-                    <FacebookShareButton
-                                    url="https://skiza.africomltd.com/"
-                                    quote={"Enhance Your Calls with Skiza - The Music Caller Tune Subscription Service"}
-                                >
-                                    <FacebookIcon logoFillColor="white" round={true}></FacebookIcon>
-                                </FacebookShareButton>
-                                <WhatsappShareButton
-                                    title={"Enhance Your Calls with Skiza - The Music Caller Tune Subscription Service"}
-                                    url="https://skiza.africomltd.com/"
-                                >
-                                    <WhatsappIcon logoFillColor="white" round={true}></WhatsappIcon>
-                                </WhatsappShareButton>
-                                <TelegramShareButton
-                                    title={"Enhance Your Calls with Skiza - The Music Caller Tune Subscription Service"}
-                                    url="https://skiza.africomltd.com/"
-                                >
-                                    <TelegramIcon logoFillColor="white" round={true}></TelegramIcon>
-                                </TelegramShareButton>
-                                <TwitterShareButton
-                                    title={"Enhance Your Calls with Skiza - The Music Caller Tune Subscription Service"}
-                                    url="https://skiza.africomltd.com/"
-                                >
-                                    <TwitterIcon logoFillColor="white" round={true}></TwitterIcon>
-                                </TwitterShareButton>
+                     
+                    <div class="d-flex justify-content-center">
+                        <h3 className="display-6 fw-bold my-4">Or Share With Your Friends</h3>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <FacebookShareButton
+                            url="https://skiza.africomltd.com/"
+                            quote={"Enhance Your Calls with Skiza - The Music Caller Tune Subscription Service"}
+                            className="mx-3"
+                        >
+                            <FacebookIcon logoFillColor="white" round={true}></FacebookIcon>
+                        </FacebookShareButton>
+                        <WhatsappShareButton
+                            title={"Enhance Your Calls with Skiza - The Music Caller Tune Subscription Service"}
+                            url="https://skiza.africomltd.com/"
+                            className="mx-3"
+                        >
+                            <WhatsappIcon logoFillColor="white" round={true}></WhatsappIcon>
+                        </WhatsappShareButton>
+                        <TelegramShareButton
+                            title={"Enhance Your Calls with Skiza - The Music Caller Tune Subscription Service"}
+                            url="https://skiza.africomltd.com/"
+                            className="mx-3"
+                        >
+                            <TelegramIcon logoFillColor="white" round={true}></TelegramIcon>
+                        </TelegramShareButton>
+                        <TwitterShareButton
+                            title={"Enhance Your Calls with Skiza - The Music Caller Tune Subscription Service"}
+                            url="https://skiza.africomltd.com/"
+                            className="mx-3"
+                        >
+                            <TwitterIcon logoFillColor="white" round={true}></TwitterIcon>
+                        </TwitterShareButton>
+                    </div>
+
+
+
                 </div>
             </>
         )
