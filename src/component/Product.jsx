@@ -92,83 +92,77 @@ const Product = () => {
         };
         return (
             <>
-                <div className="col-md-6">
-                <div class="d-flex justify-content-start">
-                    <img src={product.image} alt={product.title}
-                        height="500px" width="500px" />
+                <div class="container">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-6">
+                            <div class="card shadow-sm">
+                                <img src={product.image} class="card-img-top" alt={product.title} />
+                                <div class="card-body">
+                                    <p class="card-text text-center text-black-30">{product.title}</p>
+                                    <div class="d-flex justify-content-center">
+                                        <form onSubmit={handleSubmit}>
+                                            <div className="mb-3 ">
+                                                <input
+                                                    type="number"
+                                                    value={phone}
+                                                    onChange={handlePhoneChange}
+                                                    className="form-control form-control-lg"
+                                                    placeholder="Enter Phone Number"
+                                                />
+                                            </div>
+                                            <div class="d-flex justify-content-center">
+                                                <Link to="/Subscription">
+                                                    <button type="submit" className="btn btn-success" disabled={!isValid || isLoading}>
+                                                        {isLoading ? 'Loading...' : 'GET THIS TUNE'}
+                                                    </button>
+                                                </Link>
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+
+                                        <h3 className="text-black-30">Or </h3>
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <h3 className="text-black-30">Share With Your Friends</h3>
+                                    </div>
+                                    <div class="d-flex justify-content-center">
+                                        <FacebookShareButton
+                                            url="https://skiza.africomltd.com/"
+                                            quote={"Enhance Your Calls with Skiza - The Music Caller Tune Subscription Service"}
+                                            className="mx-3"
+                                        >
+                                            <FacebookIcon logoFillColor="white" round={true}></FacebookIcon>
+                                        </FacebookShareButton>
+                                        <WhatsappShareButton
+                                            title={"Enhance Your Calls with Skiza - The Music Caller Tune Subscription Service"}
+                                            url="https://skiza.africomltd.com/"
+                                            className="mx-3"
+                                        >
+                                            <WhatsappIcon logoFillColor="white" round={true}></WhatsappIcon>
+                                        </WhatsappShareButton>
+                                        <TelegramShareButton
+                                            title={"Enhance Your Calls with Skiza - The Music Caller Tune Subscription Service"}
+                                            url="https://skiza.africomltd.com/"
+                                            className="mx-3"
+                                        >
+                                            <TelegramIcon logoFillColor="white" round={true}></TelegramIcon>
+                                        </TelegramShareButton>
+                                        <TwitterShareButton
+                                            title={"Enhance Your Calls with Skiza - The Music Caller Tune Subscription Service"}
+                                            url="https://skiza.africomltd.com/"
+                                            className="mx-3"
+                                        >
+                                            <TwitterIcon logoFillColor="white" round={true}></TwitterIcon>
+                                        </TwitterShareButton>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                    </div>
                 </div>
-                <div className="col-md-6">
-                    <div class="d-flex justify-content-start">
-                        <h4 className="text-uppercase text-black-30">
-                            {product.category}
-                        </h4>
-                    </div>
-                    <div class="d-flex justify-content-start">
-                        <h1 className="text-capitalize">{product.title}</h1>
-                    </div>
-                    <div class="d-flex justify-content-start">
-                        <p className="lead">{product.description}</p>
-                    </div>
-                    <div class="d-flex justify-content-center">
 
-                    </div>
-                    <form onSubmit={handleSubmit}>
-                        <div className="mb-3">
-                            <input
-                                type="number"
-                                value={phone}
-                                onChange={handlePhoneChange}
-                                className="form-control"
-                                placeholder="Enter Your Phone Number"
-                            />
-                        </div>
-                        <div class="d-flex justify-content-center">
-                        <Link to="/Subscription">
-                            <button type="submit" className="btn btn-primary" disabled={!isValid || isLoading}>
-                                {isLoading ? 'Loading...' : 'GET THIS TUNE'}
-                            </button>
-                        </Link>
-                    </div>
-                    </form>
-                     
-                    <div class="d-flex justify-content-center">
-                        <h3 className="display-6 fw-bold my-4">Or Share With Your Friends</h3>
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <FacebookShareButton
-                            url="https://skiza.africomltd.com/"
-                            quote={"Enhance Your Calls with Skiza - The Music Caller Tune Subscription Service"}
-                            className="mx-3"
-                        >
-                            <FacebookIcon logoFillColor="white" round={true}></FacebookIcon>
-                        </FacebookShareButton>
-                        <WhatsappShareButton
-                            title={"Enhance Your Calls with Skiza - The Music Caller Tune Subscription Service"}
-                            url="https://skiza.africomltd.com/"
-                            className="mx-3"
-                        >
-                            <WhatsappIcon logoFillColor="white" round={true}></WhatsappIcon>
-                        </WhatsappShareButton>
-                        <TelegramShareButton
-                            title={"Enhance Your Calls with Skiza - The Music Caller Tune Subscription Service"}
-                            url="https://skiza.africomltd.com/"
-                            className="mx-3"
-                        >
-                            <TelegramIcon logoFillColor="white" round={true}></TelegramIcon>
-                        </TelegramShareButton>
-                        <TwitterShareButton
-                            title={"Enhance Your Calls with Skiza - The Music Caller Tune Subscription Service"}
-                            url="https://skiza.africomltd.com/"
-                            className="mx-3"
-                        >
-                            <TwitterIcon logoFillColor="white" round={true}></TwitterIcon>
-                        </TwitterShareButton>
-                    </div>
-
-
-
-                </div>
             </>
         )
     }
