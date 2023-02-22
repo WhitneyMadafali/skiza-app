@@ -14,7 +14,7 @@ const Products = () => {
     useEffect(() => {
         const getProducts = async () => {
             setLoading(true);
-            const response = await fetch(`https://fakestoreapi.com/products`);
+            const response = await fetch(`https://3060-41-57-111-71.eu.ngrok.io/api/products/getAll`);
             if (componentMounted) {
                 setData(await response.clone().json());
                 setFilter(await response.json());
@@ -31,7 +31,7 @@ const Products = () => {
     const Loading = () => {
         return (
             <>
-                <div className="col-md-3">
+                <div className="col-sm-6 col-md-3">
                     <Skeleton height={350} />
                 </div>
             </>
@@ -53,14 +53,14 @@ const Products = () => {
             <>
                 <div className="buttons d-flex justify-content-center mb-5 pb-5">
                     <button className="btn btn-outline-dark me-2" onClick={() => setFilter(data)}>All</button>
-                    <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("men's clothing")}>Men's clothing</button>
-                    <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("women's clothing")}>Women's clothing</button>
-                    <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("jewelery")}>Jewellery</button>
-                    <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("electronics")}>Electronics</button>
+                    <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("funfact")}>Fun Fact</button>
+                    <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("sportfact")}>Sport Fact</button>
+                    <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("methali")}>Methali</button>
+                    <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("jokes")}>Jokes</button>
                 </div>
                 <div className="row">
                     {currentItems.map((product) => (
-                        <div className="col-md-3 mb-4" key={product.id}>
+                        <div className="col-sm-6 col-md-3 mb-4" key={product.id}>
                             <div className="card h-100 text-center p-4">
                                 <img src={product.image} className="card-img-top" alt={product.title} height="250px" />
                                 <div className="card-body">
