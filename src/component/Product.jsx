@@ -16,7 +16,13 @@ const Product = () => {
     useEffect(() => {
         const getProduct = async () => {
             setLoading(true);
-            const response = await fetch(`https://3060-41-57-111-71.eu.ngrok.io/api/products/${id}`);
+            const response = await fetch(`https://3833-41-57-111-71.eu.ngrok.io/api/products/${id}`,
+            {
+                headers: new Headers({
+                    "ngrok-skip-browser-warning": "69420",
+                  })}
+            );
+
             setProduct(await response.json());
             setLoading(false);
         }
