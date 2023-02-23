@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
+import Carousel from "react-elastic-carousel";
+const breakPoints = [
+    { width: 1, itemsToShow: 2 },
+    { width: 550, itemsToShow: 4 },
+    { width: 768, itemsToShow: 4 },
+    { width: 1200, itemsToShow: 4 }
+];
 
 
 const Products = () => {
@@ -14,7 +21,11 @@ const Products = () => {
     useEffect(() => {
         const getProducts = async () => {
             setLoading(true);
-            const response = await fetch(`https://3060-41-57-111-71.eu.ngrok.io/api/products/getAll`);
+            const response = await fetch(`https://3833-41-57-111-71.eu.ngrok.io/api/products/getAll`,{
+            headers: new Headers({
+                "ngrok-skip-browser-warning": "69420",
+              })});
+            //console.log(response);
             if (componentMounted) {
                 setData(await response.clone().json());
                 setFilter(await response.json());
@@ -51,13 +62,17 @@ const Products = () => {
 
         return (
             <>
+                
                 <div className="buttons d-flex justify-content-center mb-5 pb-5">
+                <Carousel breakPoints={breakPoints}>
                     <button className="btn btn-outline-dark me-2" onClick={() => setFilter(data)}>All</button>
                     <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("funfact")}>Fun Fact</button>
                     <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("sportfact")}>Sport Fact</button>
                     <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("methali")}>Methali</button>
                     <button className="btn btn-outline-dark me-2" onClick={() => filterProduct("jokes")}>Jokes</button>
+                    </Carousel>
                 </div>
+                
                 <div className="row">
                     {currentItems.map((product) => (
                         <div className="col-sm-6 col-md-3 mb-4" key={product.id}>
